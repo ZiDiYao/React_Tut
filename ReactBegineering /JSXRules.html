@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSX Tut</title> 
+
+    <style>
+        .title {
+            color: green;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel 解析 JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel"> 
+    // 声明变量
+    const myID = "zidi";
+    const myData = "Hello ZiDi"; 
+
+    // 创建虚拟 DOM 
+    // 内联样式, 要用 style ={{key: Value}} 的形式 
+    // 一个 VDOM 对象只能有一个 根标签 比如当要写两个 h2 的时候, 就用 Div 去包裹起来 
+    const VDOM = (
+        <h2 id={myID.toLowerCase()} className="title">
+            <span style={{color:'blue' ,fontSize:'30px'}}> {myData.toLowerCase()}</span>
+        </h2>
+    );
+
+    // 渲染虚拟DOM 到页面 
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(VDOM);
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>最基本的 React</title>
+</head>
+<body>
+    <!-- 创建标签 -->
+    <div id="test"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel 解析 JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel"> 
+        // 模拟一些数据
+        const data = ['Angular', 'React', 'Vue'];
+
+        // 创建虚拟 DOM
+        const VDOM = (
+            <div> 
+                <h1>前端 JS 框架列表</h1>   
+                <ul>
+                    {data.map((item, index) => (
+                        <li key={index}>{item}</li>  
+                    ))}
+                </ul>
+            </div>
+        );
+
+        // 渲染
+        const root = ReactDOM.createRoot(document.getElementById('test'));  
+        root.render(VDOM);
+    </script>
+</body>
+</html>

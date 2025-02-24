@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数式组件 React</title>
+</head>
+<body>
+    <div id="test"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel 解析 JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel"> 
+        // 创建函数式组件: 包含实现布局的代码和资源的集合 (html/css/js/image等等等)
+        // 适用于简单组件的定义
+        // Demo  是一个组件 Component 
+
+        function Demo(){ 
+            // 这个 this 是什么? 严格模式 
+            console.log(this);
+            return <h2>我是函数定义的组件,适用于简单组件的定义</h2>
+        }
+        // 渲染组件 
+        // 组件必须闭合 
+        // 自定义组件必须 大写开头! 
+        ReactDOM.render(<Demo/>, document.getElementById('test')) 
+        // react 找到 Demo 标签
+        // 发现组件是函数定义的, 随后调用该函数, 将返回的虚拟 DOM 转为真实的DOM, 随后趁现在页面中 
+        
+        
+    </script>
+</body>
+</html>
