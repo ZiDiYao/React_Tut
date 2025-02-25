@@ -16,7 +16,7 @@
 
 
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 
-    
+
     <script type="text/babel">
 
         // state 是一个重要属性 
@@ -26,15 +26,51 @@
             // props 
             constructor(props){
                 super(props)
-                this.state = {isHot:true}
+                // 初始化状态　
+                this.state = {isHot:true} 
+                /*
+                分析:  
+
+                this.changeWeather.bind(this); 构造器中的 this. 组件实例对象 
+                                               changeWeather 找到了下面的方法, 原型上的 changeWeather 
+                                               bind(this) 作用:   
+                this.changeWeather: 实例对象多了一个方法叫做 changeWeather    
+                
+                绑定后的: 自身上的 changeWeather 就不会去下面去找原型上的 changeWeather
+
+                */
+
+                // bind(): demo().bind() 会生成一个 行函数
+                this.changeWeather = this.changeWeather.bind(this);
             }
             render(){
                 console.log(this);
                 // this 是 Weather 的实例对象
-                return <h1> 今天天气很{this.state.isHot ? '炎热': "凉爽"}</h1>
-            }
+                // 读取状态
+                // 不要写 demo() 因为这个相当于给赋值 
+                // 只有写 demo 才是把函数绑定上 
+                // 这个 onCick 要大写, 这个是 react 的特殊语法 JSX. 就像 class 要写成 className 
+                return <h1 onClick= {this.changeWeather}> 今天天气很{this.state.isHot ? '炎热': "凉爽"}</h1>
+            } 
+            // 在函数体中的 method 不需要写 function 关键字 
+
+            changeWeather(){ 
+            // 此处修改 isHot 的 value  
+            console.log("标题被点击了");
+            // 怎么才能获取 this.state ?????
+            // 这个 this 是您自定义的形式, 在严格模式下, 你的 this 无法指向 window. 
+            // undefined 
+            // 即使不开启严格模式, 你也无法调用 state 
+            // 你只有在组件实例对象中才能调用 state 这个是 react 帮你调的实例 
+            console.log(this.state.isHot);
+            } 
         }
         ReactDOM.render(<Weather/>, document.getElementById('test'))
+
+        // const title = document.getElementById('title');
+        // title.addEventListener('click',()=>{
+        //     console.log("标题被点击了")
+        // })
     </script>
 </body>
 </html>

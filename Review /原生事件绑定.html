@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原生事件绑定复习</title>
+</head>
+<body> 
+
+    <button id="button01">按钮1</button>
+    <button id="button02">按钮2</button>
+    <button onclick="demo()">按钮3</button>
+
+    <script type="text/javaScript"> 
+
+        const btn1 = document.getElementById('button01');
+        btn1.addEventListener('click',()=>{
+            alert("按钮一被点击了")
+        }) 
+
+        const btn2 = document.getElementById('button02');
+        btn2.onclick =()=>{
+            alert("按钮二被点击了")
+        } 
+
+        // react 中

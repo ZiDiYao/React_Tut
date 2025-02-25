@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类中方法 this 的指向复习</title>
+</head>
+<body> 
+
+    <script type="text/javaScript">
+
+        class Person{
+            constructor(name,age){
+                this.name = name;
+                this.age = age;
+            } 
+            speak(){
+                // 类中的方法, 自动开启严格模式
+                console.log(this);
+            }
+        }
+        // 通过 Person 实例对象调用 study 时, study 中的 this 就是 person 对象 
+        const p1 = new Person('zidi',21);
+        p1.speak() // 实例调用 
+        const x = p1.study; // 把方法直接给了 x
+  
