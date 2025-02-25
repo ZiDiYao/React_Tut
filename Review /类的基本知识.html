@@ -5,12 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>复习类的基本知识</title>
 </head>
-<body>
+<body> 
+    <!-- 总结: 
+            1. 类中的构造器是不是必须写的? 不是
+            2. 如果子构造器写, 需要调用 super() 在构造器中 
+            3. 
+    
+    -->
 
     <script type="text/JavaScript"> 
         // 创建一个 Person 类
 
         class Person{
+            // 构造器函数/方法 
+            constructor(name,age){
+                this.name = name;
+                this.age = age;
+            }
+            // 一般方法
+            // speak 方法放在了哪里? 
+            speak(){ 
+                //  speak 方法放在了哪里? 类的原型对象上, 仅供实例使用 
+                console.log("我叫${this.name}, 我的年龄是 ${this.age}")
+            }
+        }
+
+        class Student extends Person{  
+            constructor(name,age,grade){
+                super(name,age);
+                this.age = grade;
+            } 
+            speak(){
+                console.log("我叫${this.name}, 我的年龄是 ${this.age},我读的是${this.grade}年级")
+
+            }
 
 
         }

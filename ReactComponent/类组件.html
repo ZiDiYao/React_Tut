@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数式组件 React</title>
+</head>
+<body>
+    <div id="test"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel 解析 JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel"> 
+        // 必须继承 React.Component 
+        class MyComponent extends React.Component{  
+            // 构造器目前来说是完全可以省略的先 
+            // render 必须写. 这个方法是必须强制的, 且必须有返回值
+            render(){ 
+                // render 是放在哪里呢
+                // 仅供实例使用, 但是实例呢? 
+                // 
+                console.log('render  中的 this', this);
+                return <h2>我是用类定义的组件</h2>
+            }
+        }
+        // 渲染组件到页面 
+        ReactDOM.render(<MyComponent/>,document.getElementById('test')) 
+        /* 
+            React 解析组件标签, 找到了 MyComponent 组件
+            然后, 发现这个是一个 Class 定义
+            随后new 出来该类的实例, 然后找到原型上的 render
+            最后, 把虚拟 DOM 转换�

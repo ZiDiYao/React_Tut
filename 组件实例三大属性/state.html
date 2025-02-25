@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件属性 State </title>
+</head>
+<body>
+    <!-- 准备好容器 -->
+    <div id="test"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>  
+    <!-- React 需要这个库去操作 DOM (React 的拓展库) -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 
+    
+    <script type="text/babel">
+
+        // state 是一个重要属性 
+        // 1. 创建组件 
+        class Weather extends React.Component{ 
+            // 复杂组件: 有状态的组件
+            // props 
+            constructor(props){
+                super(props)
+                this.state = {isHot:true}
+            }
+            render(){
+                console.log(this);
+                // this 是 Weather 的实例对象
+                return <h1> 今天天气很{this.state.isHot ? '炎热': "凉爽"}</h1>
+            }
+        }
+        ReactDOM.render(<Weather/>, document.getElementById('test'))
+    </script>
+</body>
+</html>
