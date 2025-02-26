@@ -23,4 +23,14 @@
         const p1 = new Person('zidi',21);
         p1.speak() // 实例调用 
         const x = p1.study; // 把方法直接给了 x
-  
+        x() // 直接调用 
+
+        function demo(){ 
+            'use strict' // 开启严格模式
+            console.log(this);
+        }
+
+    </script>
+    
+</body>
+</html>

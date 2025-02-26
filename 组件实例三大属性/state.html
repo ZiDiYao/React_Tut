@@ -55,14 +55,17 @@
             // 在函数体中的 method 不需要写 function 关键字 
 
             changeWeather(){ 
-            // 此处修改 isHot 的 value  
-            console.log("标题被点击了");
-            // 怎么才能获取 this.state ?????
-            // 这个 this 是您自定义的形式, 在严格模式下, 你的 this 无法指向 window. 
-            // undefined 
-            // 即使不开启严格模式, 你也无法调用 state 
-            // 你只有在组件实例对象中才能调用 state 这个是 react 帮你调的实例 
-            console.log(this.state.isHot);
+                const isHot  = this.state.isHot;
+                // this.state.isHot = !isHot;
+                // console.log(this.state.isHot);
+
+                // 状态里的数据不能直接更改, 你这种更改 React 根本不认可 
+                // 需要借助一个 内置的 API 
+                console.log(this); // weather 实例对象 
+                // 使用 React.Component 原型中的 
+                this.setState({isHot: !isHot});
+
+
             } 
         }
         ReactDOM.render(<Weather/>, document.getElementById('test'))
