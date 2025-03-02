@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>React CDN</title>
+    <title> props 入门</title>
 </head>
 <body>
     <div id="test"></div>
@@ -15,14 +15,16 @@
 
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 
 
-    <script type="text/babel"> 
+    <script type="text/babel">  
+
 
         class Person extends React.Component{ 
             render(){
+                const {name, age, sex} = this.props;
                 return (
                     <ul> 
-                        <li>姓名</li>
-                        <li>性别</li>
+                        <li>{this.props.name}</li>
+                        <li>{sex}</li>
                         <li>年龄</li>
                         
                     </ul>
@@ -30,7 +32,9 @@
             }
         }
         // 渲染组件 
-        ReactDOM.render(<Person/>, document.getElementById('test'));
+        // 传值语句会被 JS 自动储存在 propos
+        // 可以从组件的外部往里传递参数 
+        ReactDOM.render(<Person name = "zidi" age = "21" sex ="male"/>, document.getElementById('test'));
     </script>
 </body>
 </html>

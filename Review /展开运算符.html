@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>展开运算符复习</title>
 </head>
-<body>
-    
+<body>   
+    <script type="text/javascript">
+        let arr1 = [1,2,3,5,7,9]
+        let arr2 = [2,4,6,8,10] 
+        // 展开数组
+        console.log(...arr1);
+        // 连接数组 
+        let arr3 = [...arr1,...arr2]
+        // 函数传参
+        function sum(...numbers){
+            return numbers.reduce((preValue,currValue)=>{
+                return preValue + currValue;
+            })
+        }
+        
+
+    </script>
+
+
+
+
 </body>
 </html>
