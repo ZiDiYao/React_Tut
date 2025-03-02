@@ -1,11 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>React CDN</title>
 </head>
 <body>
-    
+    <div id="test"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>  
+    <!-- React 需要这个库去操作 DOM (React 的拓展库) -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 
+
+    <script type="text/babel"> 
+
+        class Person extends React.Component{ 
+            render(){
+                return (
+                    <ul> 
+                        <li>姓名</li>
+                        <li>性别</li>
+                        <li>年龄</li>
+                        
+                    </ul>
+                )
+            }
+        }
+        // 渲染组件 
+        ReactDOM.render(<Person/>, document.getElementById('test'));
+    </script>
 </body>
 </html>
