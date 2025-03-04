@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>props 入门</title>
+</head>
+<body>
+    <div id="test"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>  
+    <!-- React 操作 DOM 的拓展库 -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>  
+    <!-- 引入 prop-types --> 
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+
+    <script type="text/babel">  
+        const { createRoot } = ReactDOM; // 从 ReactDOM 获取 createRoot 方法
+
+        class Person extends React.Component {    
+            constructor(props) { 
+                // 构造器不写也不影响啥
+                // 但是如果写了构造器, 就必须去调用 super 不然可能出现 bug (就无法调用 props undefined)
+                super(props);
+                console.log(props);
+            }
+
+            // 默认属性
+            static defaultProps = { 
+                sex: 'male', 
+                age: 18
+            }; 
+
+            // 类型检查
+            static propTypes = {
+                name: PropTypes.string.isRequired, 
+                age: PropTypes.number.isRequired,
+                sex: PropTypes.string
+            }; 
+
+            render() {
+                const { name, age, sex } = this.props; 
+                return (
+                    <ul> 
+                        <li>{name}</li>
+                        <li>{sex}</li>
+                        <li>{age - 1}</li>
+                    </ul>
+                );
+            }
+        }
+
+        // 获取挂载节点
+        const container = document.getElementById('test');
+        const root = createRoot(container);  // 使用 React 18 的 createRoot
+        root.render(<Person name="zidi" sex="male" />);
+    </script>
+</body>
+</html>

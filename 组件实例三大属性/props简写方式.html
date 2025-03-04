@@ -21,13 +21,25 @@
     <script type="text/babel">  
 
 
-        class Person extends React.Component{ 
+        class Person extends React.Component{   
+            // 保证 class 有这个属性
+            static defaultProps = { 
+
+                sex : 'male', 
+                age: 18
+
+            } 
+
+            static propTypes = {
+                name: PropTypes.string.isRequired, 
+                age: PropTypes.number.isRequired,
+                sex: PropTypes.string
+            }; 
+
+
             render(){
                 const {name, age, sex} = this.props; 
-                // props 只允许读, 不可以改 
-                // this.props.name = 'stella'
-                // 会报错, 不可以更改, 只可以从外部传入
-                // 因此, 这行代码会报错
+
                 return (
                     <ul> 
                         <li>{this.props.name}</li>
@@ -38,29 +50,7 @@
                 )
             }
         }
-        // react 底层在找这个东西
-        Person.propTypes = {
-            name: PropTypes.string.isRequired, // 限制 name 为 string 并且是必须传递的 
-            age: PropTypes.number.isRequired,
-            sex: PropTypes.string
-        }; 
-
-        Person.defaultProps = { 
-            sex : 'male', //  默认值设定
-            age: 18
-
-        }
-
-        // 渲染组件 
-        // 传值语句会被 JS 自动储存在 propos
-        // 可以从组件的外部往里传递参数 
         ReactDOM.render(<Person name = "zidi" age = {21} sex ="male"/>, document.getElementById('test'));
-        // 但是如果传入的信息特别多怎么办? 比如说传入值有 20 个 
-        // 在现实中, 都是从后端或者输入端传入的 
-        // const p = {name:"zidi", age:"21", sex:"male"};
-        // ReactDOM.render(<Person {...p}/>, document.getElementById('test')); 
-        // 必须和 class 内的名字 KEY 名字是对应的 
-        // 语法糖 ... 展开运算符复习
 
     </script>
 </body>
