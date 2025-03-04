@@ -13,7 +13,10 @@
     <!-- React 需要这个库去操作 DOM (React 的拓展库) -->
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>  
+    <!-- 引入: prop-types --> 
+
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
 
     <script type="text/babel">  
 
@@ -25,20 +28,33 @@
                     <ul> 
                         <li>{this.props.name}</li>
                         <li>{sex}</li>
-                        <li>年龄</li>
+                        <li>{age-1}</li>
                         
                     </ul>
                 )
             }
         }
+        // react 底层在找这个东西
+        Person.propTypes = {
+            name: PropTypes.string.isRequired, // 限制 name 为 string 并且是必须传递的 
+            age: PropTypes.number.isRequired,
+            sex: PropTypes.string
+        }; 
+
+        Person.defaultProps = { 
+            sex : 'male', //  默认值设定
+            age: 18
+
+        }
+
         // 渲染组件 
         // 传值语句会被 JS 自动储存在 propos
         // 可以从组件的外部往里传递参数 
         ReactDOM.render(<Person name = "zidi" age = {21} sex ="male"/>, document.getElementById('test'));
         // 但是如果传入的信息特别多怎么办? 比如说传入值有 20 个 
         // 在现实中, 都是从后端或者输入端传入的 
-        const p = {name:"zidi", age:"21", sex:"male"};
-        ReactDOM.render(<Person {...p}/>, document.getElementById('test')); 
+        // const p = {name:"zidi", age:"21", sex:"male"};
+        // ReactDOM.render(<Person {...p}/>, document.getElementById('test')); 
         // 必须和 class 内的名字 KEY 名字是对应的 
         // 语法糖 ... 展开运算符复习
 
