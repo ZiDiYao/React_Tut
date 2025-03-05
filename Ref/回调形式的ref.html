@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ref_Beginner 入门</title>
+    <title>回调形式的 ref 入门</title>
 </head>
 <body>
     <div id="test"></div>
@@ -16,30 +16,44 @@
     <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
 
     <script type="text/babel">    
-    // 字符串形式的 ref 有效率上的问题, 因此被弃用 
-    // 但是在一些版本, 比如 16 等依旧可以使用 
-    // 因此我们升级为 回调形式
-
         const { createRoot } = ReactDOM;
 
         class Demo extends React.Component { 
             constructor(props) {
                 super(props);
-                // 用 React.createRef() 创建 ref
-                this.inputRef = React.createRef();
+                this.inputRef1 = null; // 第一个输入框 ref
+                this.inputRef2 = null; // 第二个输入框 ref
             }
 
+            // 回调 ref，接收 DOM 元素并赋值
+            setInputRef1 = (element) => {
+                this.inputRef1 = element;
+            }
+
+            setInputRef2 = (element) => {
+                this.inputRef2 = element;
+            }
+
+            // 按钮点击事件：显示第一个输入框数据
             showData = () => {
-                // 通过 ref 获取输入框数据
-                alert(this.inputRef.current.value);
+                if (this.inputRef1) {
+                    alert(this.inputRef1.value);
+                }
+            }
+
+            // onBlur 事件：当第二个输入框失去焦点时，显示输入值
+            handleBlur = () => {
+                if (this.inputRef2) {
+                    alert(`失去焦点时输入的内容：${this.inputRef2.value}`);
+                }
             }
 
             render() { 
                 return (
                     <div> 
-                        <input ref={this.inputRef} type="text" placeholder="点击按钮提示数据" />&nbsp;
+                        <input ref={this.setInputRef1} type="text" placeholder="点击按钮提示数据" />&nbsp;
                         <button onClick={this.showData}>点我提示左侧数据</button>&nbsp;
-                        <input type="text" placeholder="失去焦点提示数据"/>
+                        <input ref={this.setInputRef2} type="text" placeholder="失去焦点提示数据" onBlur={this.handleBlur}/>
                     </div>
                 );
             }
