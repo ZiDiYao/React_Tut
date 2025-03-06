@@ -1,0 +1,108 @@
+/* 页面整体样式 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* 容器样式 */
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    text-align: center;
+}
+
+/* 标题样式 */
+h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* 输入框样式 */
+input {
+    width: 80%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* 按钮基础样式 */
+button {
+    padding: 8px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: background 0.3s ease-in-out;
+    font-size: 14px;
+}
+
+/* 添加任务按钮 */
+.add-btn {
+    background-color: #3498db;
+}
+
+.add-btn:hover {
+    background-color: #2980b9;
+}
+
+/* 删除任务按钮 */
+.delete-btn {
+    background-color: #e74c3c;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+/* 任务列表样式 */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+/* 任务项样式 */
+li {
+    background: #fff;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 任务文本 */
+.task-text {
+    flex-grow: 1;
+    text-align: left;
+}
+
+/* 任务完成样式 */
+.completed {
+    text-decoration: line-through;
+    color: #777;
+}
+
+/* 任务删除按钮 */
+.delete-btn {
+    background-color: #e74c3c;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+}
