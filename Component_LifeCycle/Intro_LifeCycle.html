@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React CDN</title>
+</head>
+<body>
+    <!-- 准备好容器 -->
+    <div id="test"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>  
+    <!-- React 需要这个库去操作 DOM (React 的拓展库) -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 
+
+    <script type="text/babel"> 
+
+        class LifeCycle extends React.Component { 
+
+            state = {opacity:1}
+
+
+            relax = (event)=>{ 
+                // body  
+                // 我们只学了如何把组件挂载 mount
+                // 那么如何 卸载呢 unmount  
+                // 去卸载哪一个 Component 的 Node
+
+                // 清除定时器 
+                // clearInterval(this.timer)
+
+                ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+            }  
+
+            // 这个是 render 的 ‘兄弟’
+            // 直接实例对象调用
+            // render 调用的时机有两个 1. 初始化渲染 2. 更新状态后
+
+            // componentDidMount 只会调用一次, 就是在初始化的时候 
+
+            componentWillUnmount(){ 
+                    //清除定时器 
+                    clearInterval(this.timer)
+
+            }
+
+            componentDidMount(){ 
+                console.log('componentDidMount');
+                this.timer = setInterval( ()=>{
+                    let {opacity} = this.state;
+                    opacity -=0.1;
+                    if (opacity <=0) opacity =1; 
+                    // 设置新的透明度, 更新状态
+                    this.setState({opacity})
+                },200)
+            }
+
+            // action =()=>{ 
+            //     console.log('render');
+            //     setInterval( ()=>{
+            //         let {opacity} = this.state;
+            //         opacity -=0.1;
+            //         if (opacity <=0) opacity =1; 
+            //         // 设置新的透明度, 更新状态
+            //         this.setState({opacity})
+            //     },200)
+                
+                                
+            // }
+
+            render(){  
+                return ( 
+
+                <div>
+
+                    <h2 style={{opacity:this.state.opacity}}> React 学不会</h2>
+                    <button onClick={this.relax}>摆烂了</button>
+                    
+                </div>
+
+                )
+
+            }
+        }
+
+        ReactDOM.render(<LifeCycle/>, document.getElementById('test'));
+
+    </script>
+</body>
+</html>
