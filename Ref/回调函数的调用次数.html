@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回调形式的调用次数</title>
+</head>
+<body>
+    <div id="test"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>  
+    <!-- React 需要这个库去操作 DOM (React 的拓展库) -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>  
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+
+    <script type="text/babel">     
+
+        class Demo extends React.Component{    
+
+            state = {isHot: true}
+
+            showInfo =()=>{
+                const input01 = this.value01;
+                alert(input01.value);
+            }
+
+            changeWeather = () =>{
+                const{isHot} = this.state;
+                this.setState({isHot:!isHot})
+
+            } 
+
+            // render 要执行 1 + n 次
+            // 每一次重新渲染页面, 都会重新执行 render 
+            // 对于 ref 的回调函数, 每次渲染, react 会先传入 null 为了清空, 只会才会再传入值 
+
+            render(){  
+                const{isHot} = this.state
+                return (
+                    <div> 
+                        <h2> 今天天气很 {isHot ? "炎热" : "凉爽"}</h2>
+                        <input ref= {(c)=>{this.value01 = c}} type="text"/> <br/>
+                        <button onClick= {this.showInfo}> 点我提示输入的数据</button> <br/>
+                        <button onClick={ this.changeWeather}>点击我切换天气</button>
+                        
+                    </div>
+                )
+            }
+
+        }
+        // 渲染
+        ReactDOM.render(<Demo/>, document.getElementById('test'));
+
+   
+   
+    </script>
+</body>
+</html>
