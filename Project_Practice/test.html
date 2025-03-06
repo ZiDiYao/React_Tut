@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>复杂版任务管理系统</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 20px auto; }
+        .task { display: flex; justify-content: space-between; padding: 10px; border: 1px solid #ccc; margin-top: 5px; border-radius: 5px; }
+        .completed { text-decoration: line-through; color: gray; }
+        .btn { cursor: pointer; margin-left: 5px; padding: 5px; border: none; border-radius: 3px; }
+        .delete-btn { background: red; color: white; }
+        .toggle-btn { background: green; color: white; }
+    </style>
+</head>
+<body>
+
+    <h1>任务管理系统</h1>
+    <input type="text" id="taskInput" placeholder="输入任务..." />
+    <button id="addTaskBtn">添加任务</button>
+    
+    <div>
+        <button class="btn" onclick="taskManager.setFilter('all')">全部</button>
+        <button class="btn" onclick="taskManager.setFilter('completed')">已完成</button>
+        <button class="btn" onclick="taskManager.setFilter('pending')">未完成</button>
+    </div>
+
+    <h3>任务列表 <span id="taskCount">(0)</span></h3>
+    <div id="taskList"></div>
+
+    <script>
+        class TaskManager {
+            constructor() {
+                this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+                this.filter = "all";
+                this.taskInput = document.getElementById("taskInput");
+                this.taskList = document.getElementById("taskList");
+                this.taskCount = document.getElementById("taskCount");
+                document.getElementById("addTaskBtn").addEventListener("click", () => this.addTask());
+                this.render();
+            }
+
+            addTask() {
+                const taskText = this.taskInput.value.trim();
+                if (!taskText) return alert("任务不能为空！");
+                
+                this.tasks.push({ id: Date.now(), text: taskText, completed: false });
+                this.saveAndRender();
+                this.taskInput.value = "";
+            }
+
+            toggleTask(id) {
+                this.tasks = this.tasks.map(task => task.id === id ? { ...task, completed: !task.completed } : task);
+                this.saveAndRender();
+            }
+
+            deleteTask(id) {
+                if (confirm("确定删除这个任务吗？")) {
+                    this.tasks = this.tasks.filter(task => task.id !== id);
+                    this.saveAndRender();
+                }
+            }
+
+            setFilter(filter) {
+                this.filter = filter;
+                this.render();
+            }
+
+            saveAndRender() {
+                localStorage.setItem("tasks", JSON.stringify(this.tasks));
+                this.render();
+            }
+
+            render() {
+                this.taskList.innerHTML = "";
+                const filteredTasks = this.tasks.filter(task => {
+                    if (this.filter === "completed") return task.completed;
+                    if (this.filter === "pending") return !task.completed;
+                    return true;
+                });
+
+                filteredTasks.forEach(task => {
+                    const taskItem = document.createElement("div");
+                    taskItem.className = "task";
+                    if (task.completed) taskItem.classList.add("completed");
+
+                    taskItem.innerHTML = `
+                        <span>${task.text}</span>
+                        <div>
+                            <button class="btn toggle-btn" onclick="taskManager.toggleTask(${task.id})">
+                                ${task.completed ? "未完成" : "完成"}
+                            </button>
+                            <button class="btn delete-btn" onclick="taskManager.deleteTask(${task.id})">删除</button>
+                        </div>
+                    `;
+
+                    this.taskList.appendChild(taskItem);
+                });
+
+                this.taskCount.textContent = `(${this.tasks.length})`;
+            }
+        }
+
+        const taskManager = new TaskManager();
+    </script>
+
+</body>
+</html>

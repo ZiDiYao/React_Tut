@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 非受控组件01  </title>
+</head>
+<body>
+    <div id="test"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>  
+    <!-- React 需要这个库去操作 DOM (React 的拓展库) -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>  
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+
+    <script type="text/babel">    
+    
+    class Login extends React.Component {  
+
+        // event.target 指的是 form 表单
+
+        handleSumbit = (event)=>{ 
+            event.preventDefault(); //  阻止表单提交
+            const {username, password} = this;
+            alert(username.value);
+            alert(password.value);
+
+        }
+
+        render(){
+            return (
+                <form action="" onSubmit={this.handleSumbit}> 
+                    用户名<input ref= {c=> this.username = c} type="text" name = 'username'/>
+                    密码<input ref= {c=> this.password = c} type="text" name='password'/>
+                    <button>登陆</button>
+                </form>
+            )
+        }
+
+    }
+    // 渲染
+    ReactDOM.render(<Login/>,document.getElementById('test'))
+
+    </script>
+</body>
+</html>

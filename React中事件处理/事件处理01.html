@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 事件处理01</title>
+</head>
+<body>
+    <div id="test"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>  
+    <!-- React 需要这个库去操作 DOM (React 的拓展库) -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>  
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+
+    <script type="text/babel">    
+        const { createRoot } = ReactDOM;
+
+        class Demo extends React.Component {  
+
+            // 为什么 react 要重新写 onClick 呢? 但不用原生的呢: 为了更好的兼容性
+            // react 中是通过事件委托的形式: 所有的 onXXXX 都加载给了外侧 <ul><li><li/> <ul/> 冒泡出去 
+                // 可以通过 event.target 可以得到发生事件的 DOM 元素对象
+                // 请勿过度使用 ref 随随便便就写个 ref 
+                // 当发生事件的元素, 是你要操作的元素的时候
+
+            myRef = React.createRef();  
+
+
+            constructor(props) {
+                super(props);
+                this.inputRef1 = null; 
+                this.inputRef2 = null; 
+            }
+
+            setInputRef1 = (element) => {
+                this.inputRef1 = element;
+            }
+
+            setInputRef2 = (element) => {
+                this.inputRef2 = element;
+            }
+
+            showData = () => {
+                alert(this.myRef.current.value);
+        
+            }
+
+            handleBlur = () => {
+                if (this.inputRef2) {
+                    alert(`失去焦点时输入的内容：${this.inputRef2.value}`);
+                }
+            }
+            // 原则1: 尽量少用 ref , 不要动不动就用 ref 
+            // 比如说, 你获取对象 a , 然后又去操作 对象 a 
+
+            render() { 
+                return (
+                    <div> 
+                        
+                        <input ref={this.myRef} type="text" placeholder="点击按钮提示数据" />&nbsp;
+                        <button onClick={this.showData}>点我提示左侧数据</button>&nbsp;
+                    </div>
+                );
+            }
+        }
+
+
+        const container = document.getElementById('test');
+        const root = createRoot(container);
+        root.render(<Demo />);
+    </script>
+</body>
+</html>
