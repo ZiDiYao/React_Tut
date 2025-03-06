@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回调形式的 ref 入门</title>
+</head>
+<body>
+    <div id="test"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>  
+    <!-- React 需要这个库去操作 DOM (React 的拓展库) -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>  
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+
+    <script type="text/babel">    
+        const { createRoot } = ReactDOM;
+
+        class Demo extends React.Component { 
+
+            // React 自带的API , 可以返回一个容器, 该容器可以返回一个被 ref 标识的节点
+            // 然后把这个容器挂在 this 实例上
+            // 这个容器是专人专用的, 只能存放一个 
+            // 这个是 react 最推荐的形式目前
+            // 虽然你可能会创造过多的 Ref 容器
+            myRef = React.createRef();  
+
+
+            constructor(props) {
+                super(props);
+                this.inputRef1 = null; // 第一个输入框 ref
+                this.inputRef2 = null; // 第二个输入框 ref
+            }
+
+            // 回调 ref，接收 DOM 元素并赋值
+            setInputRef1 = (element) => {
+                this.inputRef1 = element;
+            }
+
+            setInputRef2 = (element) => {
+                this.inputRef2 = element;
+            }
+
+            // 按钮点击事件：显示第一个输入框数据
+            showData = () => {
+                alert(this.myRef.current.value);
+        
+            }
+
+            // onBlur 事件：当第二个输入框失去焦点时，显示输入值
+            handleBlur = () => {
+                if (this.inputRef2) {
+                    alert(`失去焦点时输入的内容：${this.inputRef2.value}`);
+                }
+            }
+            // react 会发现, 诶呀, 这是一个 myRef 容器 
+
+            render() { 
+                return (
+                    <div> 
+                        
+                        <input ref={this.myRef} type="text" placeholder="点击按钮提示数据" />&nbsp;
+                        <button onClick={this.showData}>点我提示左侧数据</button>&nbsp;
+                    </div>
+                );
+            }
+        }
+
+        const container = document.getElementById('test');
+        const root = createRoot(container);
+        root.render(<Demo />);
+    </script>
+</body>
+</html>
