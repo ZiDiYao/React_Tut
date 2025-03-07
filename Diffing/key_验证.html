@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>验证 diffing 算法</title>
+</head>
+<body>
+    <!-- 准备好容器 -->
+    <div id="test"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>  
+    <!-- React 需要这个库去操作 DOM (React 的拓展库) -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 
+
+
+    <script type="text/babel"> 
+        class Person extends React.Component {
+            state = { 
+                persons: [{id:1,name:"zidi",age:21},
+                    {id:2,name:"stella",age:20}
+                ]
+            } 
+
+            add=()=>{
+                const {persons} = this.state;
+                const p = {id:persons.length+1, name:'janice', age:21}
+                this.setState({persons:[p,...persons]})
+            }
+            render(){
+                return ( 
+                    <div> 
+                        <h2>展示人员信息</h2>
+                        <button onClick={this.add}>添加一个小王</button>
+                        <ul> 
+                        {this.state.persons.map((personObj, index)=>{
+                            return <li key={index}>{personObj.name} ------ {personObj.age}</li>
+                        })}
+                        
+                        </ul>
+                        
+                    </div>
+
+                )
+
+            }
+        }
+        ReactDOM.render(<Person/>, document.getElementById('test'))
+
+      
+
+    </script>
+</body>
+</html>
