@@ -17,13 +17,88 @@
 
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 
 
+    <script type="text/babel">  
 
-    
+        // 求和项目 
+        class Count extends React.Component{ 
+
+            state = {count:0}
+
+            componentWillMount(){
+
+
+            }
+
+            componentDidMount(){
+
+
+            }  
+
+            // 组件将要卸载的钩子 
+
+            componentWillUnmount(){
+
+            }  
+
+            // 更改组件
+            componentWillReceiveProps(){
+
+
+            } 
+
+            // 组件是否应该被更新
+            // 这个是一个阀门 
+            // 在调用完 setState 后, 会进入到这个 hook 
+            // 如果这个返回的 true 可以继续更新
+            // 但是如果返回的是 false 就不可以更新 
+
+            shouldComponentUpdate(){ 
+                return true;
+
+
+            } 
+
+
+            // forceUpdate 
+            // 就单纯更新, 不更新 state 等
+            // 阀门无法阻止 forceUpdate  
+            componentWillUpdate(){
+
+
+            }  
+
+       
+
+            componentDidUpdate(){
+
+
+            }
+
+            add = ()=>{
+                // 获取原来的状态
+                const {count} = this.state
+                this.setState({count : count+1})
+            }
+
+            render(){ 
+                const {count} = this.state
+
+
+                return (
+                    <div> 
+                        <h2> The curr Sum is {count}</h2>
+                        <button onClick ={this.add}> Plus + 1 </button>
+                        
+                    </div>
 
 
 
-    <script type="text/babel">
-  
+                )
+            }
+        }
+
+        ReactDOM.render(<Count/>, document.getElementById('test'))
+
     </script>
 </body>
 </html>

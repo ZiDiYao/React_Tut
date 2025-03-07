@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>父子标签</title>
+</head>
+<body>
+    <!-- 准备好容器 -->
+    <div id="test"></div>
+
+    <!-- React 核心库 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>  
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 
+
+    <script type="text/babel">  
+
+        class Count extends React.Component { 
+            state = { count: 0 };
+
+            componentDidMount() {
+                console.log("组件挂载完成");
+            }  
+
+            componentWillUnmount() {
+                console.log("组件将要卸载");
+            }  
+
+            shouldComponentUpdate(nextProps, nextState) { 
+                return nextState.count !== this.state.count; // 只有当 count 变化时才更新
+            } 
+
+            componentDidUpdate(prevProps, prevState) {
+                console.log("组件更新完成");
+            }
+
+            add = () => {
+                this.setState({ count: this.state.count + 1 });
+            };
+
+            render() { 
+                return (
+                    <div> 
+                        <h2>The current Sum is {this.state.count}</h2>
+                        <button onClick={this.add}>Plus +1</button>
+                    </div>
+                );
+            }
+        } 
+
+
+
+        class A extends React.Component { 
+            state = {carName : "奔驰"} 
+
+            changeCar = ()=>{
+                this.setState({carName:"奥拓"})
+            }
+            // 通过 props 给 B 传递
+            render() {
+                return (
+                    <div> 
+                        <div>A</div>  
+                        <button onClick={this.changeCar}> 换车</button> 
+                        
+                        <B carName = {this.state.carName}/>
+                    </div>
+                );
+            }
+        } 
+
+
+        class B extends React.Component {
+            render() { 
+
+                // B 组件状态: componentWillReceiveProps() 
+                // componentWillReceiveProps(){
+
+                //         console.log("componentWillCeceiveProps!!!");
+                // }
+                return <div>我是 B 组件接收到的车是: {this.props.carName}</div>;
+            }
+        }
+
+        ReactDOM.render(<A />, document.getElementById('test'));
+    </script>
+</body>
+</html>
