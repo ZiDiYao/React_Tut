@@ -14,10 +14,52 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 
 
-    <script type="text/babel">  
+    <script type="text/babel">   
+
+
+        /** a)
+         * 1. 初始化阶段: 由 ReactDOM.render()触发 ----- 初次渲染
+         * 2. constructor()
+         * 3. componentWillMount()
+         * 4. render()
+         * 5. componentDidMount()
+         * 
+         * 
+         * b) 
+         *   1. 更新阶段, 由组件内部 this.setState() 或者 父组件重新 render 触发
+         *   2. componentWillUpdate()
+         *   3. render()
+         *   4. componentDidUpdate()
+         * 
+         * c) 
+         *   1. 卸载组件: 由 ReactDOM.unmountComponentAtNode() 触发
+         *   2. componentWillUnmount() 
+         *   3.  一般都是做一些收尾的事情: 比如关闭定时器, 取消订阅 
+         * 
+         **/ 
 
         class Count extends React.Component { 
-            state = { count: 0 };
+            state = { count: 0 };  
+
+
+            // 没有实例
+            // 如果 state 任何时候都取决于 props
+            // 会导致代买冗余
+            static getDerivedStateFromProps(props,state){ 
+                console.log("新方法"); 
+                return null;
+
+            } 
+
+            // getSnapshotBeforeUpdate
+            // 先执行 render , 然后这个, 再然后 data update 
+            // 快照 
+            // 要不然 return null 要不然 snapshot  
+            // 把这个快照 value 传递给 componentDidUpdate 
+            getSnapshotBeforeUpdate(){ 
+                console.log("zidi");
+                return "zidi";
+            }
 
             componentDidMount() {
                 console.log("组件挂载完成");
@@ -31,8 +73,10 @@
                 return nextState.count !== this.state.count; // 只有当 count 变化时才更新
             } 
 
-            componentDidUpdate(prevProps, prevState) {
-                console.log("组件更新完成");
+            // 输出之前的 props 和之前的状态
+            componentDidUpdate(prevProps, prevState, snapshotValue) {
+                console.log("输出之前的 props 和之前的状态, 组件更新完成, ${snapshotValue}");
+                
             }
 
             add = () => {
@@ -48,8 +92,6 @@
                 );
             }
         } 
-
-
 
         class A extends React.Component { 
             state = {carName : "奔驰"} 
@@ -68,9 +110,9 @@
                     </div>
                 );
             }
-        } 
+        }  
 
-
+        // 子组件
         class B extends React.Component {
             render() { 
 
@@ -83,7 +125,7 @@
             }
         }
 
-        ReactDOM.render(<A />, document.getElementById('test'));
+        ReactDOM.render(<Count count = {10 }/>, document.getElementById('test'));
     </script>
 </body>
 </html>
