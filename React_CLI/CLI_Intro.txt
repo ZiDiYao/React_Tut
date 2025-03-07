@@ -1,0 +1,4 @@
+使用 CLI 特点: 模块化,组件化, 工程化
+React 提供了一个 脚手架的库 Fackbook 创建的
+全局安装 npm install -g create-react-app (需要有 npm 的基本知识) 
+
