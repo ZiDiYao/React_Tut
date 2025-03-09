@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>验证 diffing 算法</title>
+    <title>验证 key </title>
 </head>
 <body>
     <!-- 准备好容器 -->
@@ -15,7 +15,30 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
 
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>  
+
+
+    <!-- 
+        1. 为什么在遍历列表的时候, 要用 key 最好不要用 index ?
+
+
+        2. 虚拟 DOM 中 key 的作用: 
+            简单说: key 是虚拟 DOM 对象的标识, 在更新显示的时候 key 有着非常重要的作用 
+            详细的说: 当状态的数据发生变化的时候, react 会根据 新数据 生成 新的虚拟 DOM 
+            a. 虚拟 旧的 DOM 会找到 新虚拟 DOM 相同的 key 
+                    如果虚拟 DOM 内容没有改变, 直接使用之前的真实 DOM 比如 key 都为 1 的 node 
+                    如果虚拟 DOM 内容变化了, 则会生成新的真实的 DOM , 随后替换页面之前的真实 DOM 
+
+            b. 若 旧的虚拟 DOM 没有找到新的虚拟 DOM 相同的 key 
+                    则会根据数据创新型的真实的 DOM , 然后渲染到页面
+
+        3. index 作为 key 可能会引发的问题 
+
+            导致每一次都要重新创建所有新的 DOM, 因为每一次 index 都不一样 
+            因此要使用数据的唯一标识, 去用每一个人的 id 去实现 
+
+            而且, 数据会错乱如果用 index     
+    -->
 
 
     <script type="text/babel"> 
@@ -38,7 +61,7 @@
                         <button onClick={this.add}>添加一个小王</button>
                         <ul> 
                         {this.state.persons.map((personObj, index)=>{
-                            return <li key={index}>{personObj.name} ------ {personObj.age}</li>
+                            return <li key={personObj.id}>{personObj.name} ------ {personObj.age}</li>
                         })}
                         
                         </ul>
