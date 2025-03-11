@@ -1,10 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';  // 注意这里的 `/client` 
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
 
-// 引入组件 
-import App from './App';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
