@@ -9,9 +9,7 @@ class App extends React.Component{
             </div>
         )
     }
-
 }
-
 // 如果不暴露, 就无法在 index.js 中引入
 
-export default App
+export default App 
