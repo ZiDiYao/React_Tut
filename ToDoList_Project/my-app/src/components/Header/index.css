@@ -1,0 +1,20 @@
+/* Header 样式 */
+.todo-header {
+    padding: 15px;
+    background: #007bff;
+    color: white;
+    text-align: center;
+}
+
+.todo-header input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.todo-header input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}

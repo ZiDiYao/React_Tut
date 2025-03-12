@@ -1,0 +1,32 @@
+/* Footer 样式 */
+.todo-footer {
+    padding: 10px;
+    background: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #ddd;
+}
+
+.todo-footer input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #007bff;
+}
+
+.todo-footer span {
+    font-size: 14px;
+}
+
+.todo-footer .btn {
+    background: #ff4d4d;
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.todo-footer .btn:hover {
+    background: #d63333;
+}

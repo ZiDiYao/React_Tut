@@ -1,0 +1,45 @@
+/* 单个任务项样式 */
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.todo-item label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.todo-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #007bff;
+}
+
+.todo-item span {
+    font-size: 16px;
+}
+
+/* 删除按钮 */
+.todo-item .btn {
+    padding: 5px 10px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: none;
+    transition: 0.3s;
+}
+
+.todo-item:hover .btn {
+    display: inline-block;
+}
+
+.todo-item .btn:hover {
+    background: #d63333;
+}
