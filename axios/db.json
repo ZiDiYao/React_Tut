@@ -1,0 +1,41 @@
+{
+    "posts": [
+      {
+        "id": "2",
+        "title": "another title",
+        "views": 200
+      },
+      {
+        "id": "3",
+        "title": "another title",
+        "views": 300
+      },
+      {
+        "id": "c0a7",
+        "title": "New Post",
+        "body": "This is the content of the new post.",
+        "userId": 1
+      },
+      {
+        "id": "09a1",
+        "title": "ZiDi",
+        "body": "你好, 我是ZiDi 创造出来的书",
+        "userId": 99
+      }
+    ],
+    "comments": [
+      {
+        "id": "1",
+        "text": "a comment about post 1",
+        "postId": null
+      }
+    ],
+    "profile": {
+      "name": "typicode"
+    },
+    "review": {
+      "rate": "9.5/10"
+    }
+  } 
+
+  
