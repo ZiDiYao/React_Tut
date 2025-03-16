@@ -1,24 +1,25 @@
 import React, { Component } from 'react'; 
 import './index.css';
 
-
 export default class List extends Component {
   render() {
+    const { users } = this.props;  // ✅ 确保 users 从 props 里获取
+
     return (
       <div className="row">
-        {[
-          { name: 'User01', img: 'https://robohash.org/user1.png' },
-          { name: 'User02', img: 'https://robohash.org/user2.png' },
-          { name: 'User03', img: 'https://robohash.org/user3.png' },
-          { name: 'User04', img: 'https://robohash.org/user4.png' },
-          { name: 'User05', img: 'https://robohash.org/user5.png' },
-          { name: 'User06', img: 'https://robohash.org/user6.png' },
-        ].map((user, index) => (
-          <div className="card" key={index}>
-            <img src={user.img} alt={user.name} className="user-avatar" />
-            <div className="user-name">{user.name}</div>
-          </div>
-        ))}
+        {/* ✅ 如果用户为空，显示提示 */}
+        {users.length === 0 ? (
+          <h3 className="no-users">暂无搜索结果</h3>
+        ) : (
+          users.map((user, index) => (
+            <div className="card" key={user.id}> {/* ✅ 使用 user.id 作为 key */}
+              <a href={user.html_url} target="_blank" rel="noopener noreferrer">
+                <img src={user.avatar_url} alt={user.login} className="user-avatar" />
+              </a>
+              <div className="user-name">{user.login}</div>
+            </div>
+          ))
+        )}
       </div>
     );
   }
