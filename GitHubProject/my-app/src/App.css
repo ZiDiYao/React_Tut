@@ -1,0 +1,93 @@
+/* 🌟 全局背景颜色（渐变） */
+body {
+  background: linear-gradient(135deg, #f6d365, #fda085);
+  margin: 0;
+  font-family: 'Poppins', sans-serif;  /* 使用更好看的 Google 字体 */
+}
+
+/* 🌟 搜索区域 */
+.jumbotron {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+/* 🌟 标题样式 */
+.jumbotron h3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff6f61;
+  text-shadow: 2px 2px 8px rgba(255, 111, 97, 0.3);
+  font-family: 'Pacifico', cursive;  /* 让字体更艺术 */
+}
+
+/* 🌟 输入框样式 */
+.jumbotron input {
+  width: 80%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 2px solid #ff6f61;
+  border-radius: 8px;
+  font-size: 16px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.jumbotron input:focus {
+  border-color: #ff4757;
+  outline: none;
+}
+
+/* 🌟 搜索按钮 */
+.jumbotron button {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: #ff4757;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.jumbotron button:hover {
+  background: #e84118;
+  transform: scale(1.05);
+}
+
+/* 🌟 用户列表区域 */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* 🌟 用户卡片 */
+.card {
+  padding: 15px;
+  margin: 10px;
+  width: 160px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+/* 🌟 使用不同颜色的卡片 */
+.card:nth-child(1) { background: #ff6b81; }
+.card:nth-child(2) { background: #ffb142; }
+.card:nth-child(3) { background: #34ace0; }
+.card:nth-child(4) { background: #33d9b2; }
+.card:nth-child(5) { background: #706fd3; }
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
