@@ -1,0 +1,13 @@
+用于解决 兄弟间无法互相传值的问题 
+
+订阅报纸: 1. 交钱, 说好地址, 订阅哪一种报纸
+         2. 邮递员送报纸
+
+订阅消息: 1. 消息名 2. 发布消息 
+         你订阅的消息, 只有等人家发布的时候, 你才能收得到  
+
+有很多的库可以实现这种机制: 
+                        比如 PubSubJS : Publish 发布  Subscribe 订阅 JS  
+
+                        npm add pubsub-js 
+                        引入 import PubSub from 'pubsub-js' 
