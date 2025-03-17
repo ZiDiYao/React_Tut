@@ -1,0 +1,46 @@
+SPA: single page application 单页面应用 
+
+点击页面中的连接，不会更新页面
+
+只是做页面的局部刷新
+
+如果使用路由技术， 就不会更新页面了 
+
+数据都需要 ajax 发送请求， 然后对不同的组件进行更改
+
+SPA:  单页面 + 多组件 
+
+什么是路由？ 
+
+工作原理： 路由检测路径，只要路径发生改变，component 就随之改变。这个其实就是一个映射关系
+
+Key  -------> Value 
+
+Key 为路径
+
+Value 可能是 function 或者是一个 Component 
+
+路由的分类： 后端路由和 前端路由 
+
+后端： Node 和 Express 
+
+
+区别： /home.html and /home
+
+路由的原理：
+
+History 
+
+DOM
+BOM: 浏览器对象 身上有 History 
+
+借助一个库： History.js 
+
+History.createBrowserHistory(); 
+
+History.createHashHistory(); 
+
+
+
+
+
