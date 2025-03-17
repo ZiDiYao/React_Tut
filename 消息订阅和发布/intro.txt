@@ -11,3 +11,9 @@
 
                         npm add pubsub-js 
                         引入 import PubSub from 'pubsub-js' 
+                        在需要接收的组件里去定义LpubSub.subscribe("My Topic",mysubscriber)
+                        在 A 中监控 B， B 中有个事件叫 My Topic  
+
+
+
+
